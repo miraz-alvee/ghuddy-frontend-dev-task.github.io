@@ -28,12 +28,14 @@ const Home = () => {
 
       <FilterButtons setPropertyType={setPropertyType}></FilterButtons>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 p-6">
-        {hotels.length > 0 ? (
-          hotels.map((hotel) => <HotelCard key={hotel.id} hotel={hotel}></HotelCard>)
-        ) : (
-          <p>No hotels found</p>
-        )}
+      <div className="container mx-auto px-4 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {hotels.length > 0 ? (
+            hotels.map((hotel) => <HotelCard key={hotel.id} hotel={hotel} />)
+          ) : (
+            <p className="col-span-full text-center text-gray-500">No hotels found</p>
+          )}
+        </div>
       </div>
     </div>
   );

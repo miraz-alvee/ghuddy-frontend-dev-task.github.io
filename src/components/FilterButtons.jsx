@@ -1,6 +1,17 @@
 import { useState } from "react";
+import { FaHotel, FaHome, FaBuilding, FaCity, FaShip, FaRestroom } from 'react-icons/fa';
 
-const propertyTypes = ['Hotel', 'Holiday Home','Villa', 'Apartment', 'Boat', 'Resort', 'Ship'];
+const propertyIcons = {
+  "Hotel": <FaHotel />,
+  "Holiday Home": <FaHome />,
+  "Villa": <FaBuilding />,
+  "Apartment": <FaCity />,
+  "Boat": <FaShip />,
+  "Resort": <FaRestroom />,
+  "Ship": <FaShip />,
+};
+
+const propertyTypes = Object.keys(propertyIcons);
 
 const FilterButtons = ({ setPropertyType }) => {
   const [selected, setSelected] = useState(null);
@@ -8,7 +19,7 @@ const FilterButtons = ({ setPropertyType }) => {
   const handleClick = (type) => {
     if (selected === type) {
       setSelected(null);
-      setPropertyType(""); // Remove filter
+      setPropertyType(""); 
     } else {
       setSelected(type);
       setPropertyType(type);
@@ -16,7 +27,7 @@ const FilterButtons = ({ setPropertyType }) => {
   };
 
   return (
-    <div className="flex justify-between space-x-4 p-4 max-w-screen-2xl mx-auto">
+    <div className="flex justify-between space-x-4 p-4 max-w-screen-2xl mx-auto mt-10">
       {propertyTypes.map((type) => (
         <button
           key={type}
@@ -24,10 +35,10 @@ const FilterButtons = ({ setPropertyType }) => {
           className={`flex items-center gap-2 px-4 py-2 border-2 rounded-full transition-colors
             ${selected === type 
               ? 'bg-blue-500 text-white border-blue-500' 
-              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}
-          `}
+              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
         >
-          {type}
+          {propertyIcons[type]} 
+          <span>{type}</span>
         </button>
       ))}
     </div>
@@ -35,4 +46,3 @@ const FilterButtons = ({ setPropertyType }) => {
 };
 
 export default FilterButtons;
-
